@@ -30,8 +30,8 @@ pip install cobot-sandbox
 cobot-sandbox                        # pick a scene, pick a robot, drive it. Press H in the window for help
 ```
 
-Use a virtual environment as usual (`python -m venv .venv` first). The package is published to
-PyPI from GitHub releases; until the first release, use option B.
+Use a virtual environment as usual (`python -m venv .venv` first). New versions are published to
+PyPI from GitHub releases.
 
 **Option B: from source** (to read or change the code)
 
