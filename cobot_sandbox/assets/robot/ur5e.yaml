@@ -1,0 +1,31 @@
+# Universal Robots UR5e + Robotiq 2F-85, built from MuJoCo Menagerie (scripts/fetch_models.py).
+# Joint/torque limits from the Menagerie model (UR datasheet values); servo gains are ours.
+name: ur5e
+title: UR5e (6-DOF) + Robotiq 2F-85
+source: menagerie
+arm: universal_robots_ur5e/ur5e.xml
+gripper_model: {file: robotiq_2f85/2f85.xml, attach_site: attachment_site, prefix: grip_}
+
+arm_joints: [shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]
+arm_actuators: [shoulder_pan_joint_motor, shoulder_lift_joint_motor, elbow_joint_motor,
+                wrist_1_joint_motor, wrist_2_joint_motor, wrist_3_joint_motor]
+home: [-3.4447, -1.7129, 1.6054, -1.4633, -1.5705, 2.8370]   # solved by scripts/robot_home.py (TCP 0.45, 0, 0.37, tool down)
+
+kp: [800, 800, 600, 150, 150, 80]
+kd: [50, 50, 35, 8, 8, 4]
+torque_limits: [150, 150, 150, 28, 28, 28]
+max_joint_vel: [2.0, 2.0, 2.5, 3.0, 3.0, 3.0]
+max_following_error: [0.05, 0.05, 0.06, 0.12, 0.12, 0.12]
+max_tcp_lag: 0.03
+
+tcp: {site: grip_pinch}                          # Robotiq's own pinch point (y = closing axis)
+wrist_camera: {body: grip_base_mount, pos: [0.0, 0.085, 0.0], xyaxes: [-1, 0, 0, 0, 0.958, 0.287], fovy: 70}
+ft_site: attachment_site
+gripper: {actuator: grip_fingers_actuator, open: 0, closed: 255}
+width: {bodies: [grip_left_pad, grip_right_pad], offset: -0.0135}   # pad distance minus pad thickness
+finger_bodies: [[grip_left_pad, grip_left_silicone_pad, grip_left_follower],
+                [grip_right_pad, grip_right_silicone_pad, grip_right_follower]]
+reach: [0.30, 0.80]
+
+limits: {ee_lin: 0.25, ee_ang: 1.2}
+ik: {damping: 0.05, null_gain: 0.05, iters: 3, rot_weight: 0.5}

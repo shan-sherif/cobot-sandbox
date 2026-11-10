@@ -1,0 +1,30 @@
+name: stack
+title: Stack
+description: Stack the red cube on the green cube (robosuite-style Stack).
+
+# Benchmark-style scene: one robot, chosen when the scene loads (remembered in settings.yaml).
+# Layout recreated in this sandbox's format, not the original benchmark's assets.
+robots:
+  select: one
+  mounts:
+    - {robot: franka_fr3, pos: [0, 0]}
+    - {robot: ur5e, pos: [0, 0]}
+
+environment:
+  floor: {size: [3, 3], material: concrete}
+
+fixtures:
+  - {name: table, type: table, pos: [0.62, 0], size: [0.3, 0.45], height: 0.40, material: wood}
+
+objects:
+  - {name: red, type: cube, size: 0.02, pos: [0.5, 0.08], color: [0.9, 0.2, 0.2]}
+  - {name: green, type: cube, size: 0.025, pos: [0.55, -0.1], color: [0.2, 0.75, 0.35]}
+
+tasks:
+  - {type: stack, object: red, on: green}
+
+randomize: {object_xy: 0.06, object_yaw: true, friction_scale: [0.7, 1.3], mass_scale: [0.7, 1.4], light_jitter: 0.2}
+
+cameras:
+  - {name: overview, pos: [1.7, -1.1, 1.25], lookat: [0.5, 0, 0.42], fovy: 45}
+  - {name: front, pos: [1.25, 0.0, 0.95], lookat: [0.5, 0, 0.4], fovy: 55}

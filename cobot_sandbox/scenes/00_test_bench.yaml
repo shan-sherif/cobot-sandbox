@@ -1,0 +1,43 @@
+name: test_bench
+title: Test bench
+description: Franka FR3 and UR5e side by side, both live (Tab switches). Try lift, stack and bin tasks.
+
+# Free experimentation: both robots are simulated at once, commands go to the active one.
+recording: false
+
+robots:
+  select: all                       # every robot below is live
+  mounts:
+    - {robot: franka_fr3, pos: [0, -0.8], label: "Franka FR3"}
+    - {robot: ur5e, pos: [0, 0.8], label: "UR5e"}
+
+environment:
+  floor: {size: [4, 4], material: concrete}
+
+fixtures:
+  - {name: table_fr3, type: table, pos: [0.62, -0.8], size: [0.26, 0.4], height: 0.40, material: wood}
+  - {name: bin_fr3, type: bin, on: table_fr3, pos: [0.6, -1.08], size: [0.08, 0.08, 0.06], color: [0.2, 0.45, 0.75]}
+  - {name: table_ur5e, type: table, pos: [0.62, 0.8], size: [0.26, 0.4], height: 0.40, material: wood}
+  - {name: bin_ur5e, type: bin, on: table_ur5e, pos: [0.6, 1.08], size: [0.08, 0.08, 0.06], color: [0.2, 0.45, 0.75]}
+
+objects:
+  - {name: fr3_red, type: cube, size: 0.022, pos: [0.5, -0.72], color: [0.9, 0.2, 0.2]}
+  - {name: fr3_green, type: cube, size: 0.026, pos: [0.58, -0.86], color: [0.2, 0.75, 0.35]}
+  - {name: fr3_blue, type: cube, size: 0.02, pos: [0.44, -0.9], color: [0.15, 0.45, 0.95]}
+  - {name: ur5e_red, type: cube, size: 0.022, pos: [0.5, 0.88], color: [0.9, 0.2, 0.2]}
+  - {name: ur5e_green, type: cube, size: 0.026, pos: [0.58, 0.74], color: [0.2, 0.75, 0.35]}
+  - {name: ur5e_blue, type: cube, size: 0.02, pos: [0.44, 0.7], color: [0.15, 0.45, 0.95]}
+
+# Checklist shown in the HUD for the active robot; P runs them with the scripted autopilot.
+tasks:
+  - {type: lift, object: fr3_red, height: 0.10, robot: franka_fr3, text: "Lift the red cube 10 cm"}
+  - {type: stack, object: fr3_red, on: fr3_green, robot: franka_fr3, text: "Stack red on green"}
+  - {type: place, object: fr3_blue, in: bin_fr3, robot: franka_fr3, text: "Put the blue cube in the bin"}
+  - {type: lift, object: ur5e_red, height: 0.10, robot: ur5e, text: "Lift the red cube 10 cm"}
+  - {type: stack, object: ur5e_red, on: ur5e_green, robot: ur5e, text: "Stack red on green"}
+  - {type: place, object: ur5e_blue, in: bin_ur5e, robot: ur5e, text: "Put the blue cube in the bin"}
+
+cameras:
+  - {name: overview, pos: [2.3, -0.2, 1.6], lookat: [0.35, 0, 0.45], fovy: 55}
+
+view: {lookat: [0.3, 0, 0.55], distance: 3.3, azimuth: 180, elevation: -18, follow: false}

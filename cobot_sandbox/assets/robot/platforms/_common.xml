@@ -1,0 +1,13 @@
+<!-- Shared look for visual-only fragments in this folder (pedestals, display models).
+     scene_builder copies these materials and the `sandbox_vis` default class into every scene. -->
+<mujoco model="platform_common">
+  <default>
+    <default class="sandbox_vis">
+      <geom contype="0" conaffinity="0" density="0" group="1"/>
+    </default>
+  </default>
+  <asset>
+    <material name="sandbox_metal" rgba="0.62 0.64 0.67 1" specular="1" shininess="0.9" reflectance="0.15"/>
+    <material name="sandbox_accent" rgba="0.05 0.62 0.72 1" specular="0.6" shininess="0.8" emission="0.15"/>
+  </asset>
+</mujoco>

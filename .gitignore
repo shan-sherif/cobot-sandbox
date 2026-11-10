@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+# recordings and checkpoints (source checkout)
+data/
+.DS_Store
+MUJOCO_LOG.TXT
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.vscode/
+.idea/
+# local-only files (removed BC baseline etc.)
+local/
+# per-user app settings (cobot_sandbox/settings.py)
+settings.yaml
+# Claude Code project notes (kept local)
+CLAUDE.md

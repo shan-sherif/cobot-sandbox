@@ -1,0 +1,30 @@
+name: peg_insertion
+title: Peg insertion
+description: Insert a square peg into a hole with 4 mm clearance per side.
+
+# Benchmark-style scene: one robot, chosen when the scene loads (remembered in settings.yaml).
+# Layout recreated in this sandbox's format, not the original benchmark's assets.
+robots:
+  select: one
+  mounts:
+    - {robot: franka_fr3, pos: [0, 0]}
+    - {robot: ur5e, pos: [0, 0]}
+
+environment:
+  floor: {size: [3, 3], material: concrete}
+
+fixtures:
+  - {name: table, type: table, pos: [0.62, 0], size: [0.3, 0.45], height: 0.40, material: wood}
+  - {name: hole, type: hole, on: table, pos: [0.56, -0.15], size: [0.05, 0.05, 0.025], hole: 0.016}
+
+objects:
+  - {name: peg, type: box, size: [0.012, 0.012, 0.035], pos: [0.5, 0.1], color: [0.95, 0.55, 0.15], mass: 0.05}
+
+tasks:
+  - {type: insert, object: peg, into: hole}
+
+randomize: {object_xy: 0.04, friction_scale: [0.8, 1.2], mass_scale: [0.8, 1.2], light_jitter: 0.2}
+
+cameras:
+  - {name: overview, pos: [1.7, -1.1, 1.25], lookat: [0.5, 0, 0.42], fovy: 45}
+  - {name: front, pos: [1.25, 0.0, 0.95], lookat: [0.5, 0, 0.4], fovy: 55}

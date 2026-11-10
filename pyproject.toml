@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cobot-sandbox"
+dynamic = ["version"]
+description = "MuJoCo quick-start environment for manipulation research with the Franka FR3 and UR5e: teleop, benchmark-style tasks, data collection and imitation learning."
+readme = "README.md"
+requires-python = ">=3.10"
+# The package's own code is MIT; it also ships unmodified MuJoCo Menagerie robot models under
+# their own licenses (see THIRD_PARTY_NOTICES.md), hence the combined expression.
+license = "MIT AND Apache-2.0 AND BSD-3-Clause AND BSD-2-Clause"
+license-files = [
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "cobot_sandbox/assets/third_party/menagerie/*/LICENSE",
+]
+authors = [{ name = "Shan Zheng Tan" }]
+keywords = ["robotics", "mujoco", "simulation", "imitation-learning", "manipulation", "franka", "ur5e", "teleoperation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "mujoco>=3.2,<4",
+    "numpy>=1.26",
+    "pygame-ce>=2.4",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]          # tests
+
+[project.scripts]
+cobot-sandbox = "cobot_sandbox.cli:main"
+cobot-sandbox-collect = "cobot_sandbox.tools.collect:main"
+cobot-sandbox-replay = "cobot_sandbox.tools.replay:main"
+
+[project.urls]
+Homepage = "https://github.com/shan-sherif/cobot-sandbox"
+Issues = "https://github.com/shan-sherif/cobot-sandbox/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "cobot_sandbox.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["cobot_sandbox*"]
+
+[tool.setuptools.package-data]
+cobot_sandbox = ["assets/**/*", "scenes/*.yaml"]

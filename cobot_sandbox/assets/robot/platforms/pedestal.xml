@@ -1,0 +1,22 @@
+<!-- Pedestal robots are mounted on (scene mounts with `stand: pedestal`, the default). Hand-edited.
+     Visual only (no collision, no mass); scene_builder adds a collision cylinder for the column.
+     Frame: z = 0 floor, x forward, mount plate top at z = 0.28 (scene_builder.PLATFORM_MOUNT_Z).
+     Materials and the sandbox_vis class come from _common.xml. -->
+<mujoco model="platform_pedestal">
+  <asset>
+    <material name="ped_grey" rgba="0.62 0.64 0.67 1" specular="0.5" shininess="0.5"/>
+    <material name="ped_dark" rgba="0.2 0.21 0.23 1" specular="0.4" shininess="0.4"/>
+  </asset>
+  <worldbody>
+   <body name="platform" childclass="sandbox_vis">
+    <geom type="cylinder" fromto="0 0 0 0 0 0.02" size="0.22" material="ped_dark"/>
+    <geom type="cylinder" fromto="0.1273 0.1273 0.02 0.1273 0.1273 0.03" size="0.012" material="sandbox_metal"/>
+    <geom type="cylinder" fromto="-0.1273 0.1273 0.02 -0.1273 0.1273 0.03" size="0.012" material="sandbox_metal"/>
+    <geom type="cylinder" fromto="-0.1273 -0.1273 0.02 -0.1273 -0.1273 0.03" size="0.012" material="sandbox_metal"/>
+    <geom type="cylinder" fromto="0.1273 -0.1273 0.02 0.1273 -0.1273 0.03" size="0.012" material="sandbox_metal"/>
+    <geom type="cylinder" fromto="0 0 0.02 0 0 0.26" size="0.09" material="ped_grey"/>
+    <geom type="cylinder" fromto="0 0 0.2 0 0 0.21" size="0.0915" material="sandbox_accent"/>
+    <geom type="cylinder" fromto="0 0 0.26 0 0 0.28" size="0.13" material="ped_dark"/>
+   </body>
+  </worldbody>
+</mujoco>

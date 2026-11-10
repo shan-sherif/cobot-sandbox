@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use Cobot Sandbox in your research, please cite it as below."
+type: software
+title: "Cobot Sandbox"
+abstract: >-
+  A quick-start MuJoCo environment for robot-manipulation research with live, controllable
+  Franka FR3 and UR5e arms (MuJoCo Menagerie models), benchmark-style tasks defined as YAML scenes,
+  keyboard/gamepad teleoperation, scripted solvers, headless data collection with bit-exact
+  replay, and one shared 8-D action interface.
+authors:
+  - given-names: "Shan Zheng"
+    family-names: "Tan"
+version: "0.1.0"
+date-released: "2026-11-10"
+license: MIT
+repository-code: "https://github.com/shan-sherif/cobot-sandbox"
+url: "https://pypi.org/project/cobot-sandbox/"
+keywords:
+  - robotics
+  - robot manipulation
+  - MuJoCo
+  - simulation
+  - imitation learning
+  - teleoperation
+  - Franka FR3
+  - UR5e
